@@ -27,7 +27,7 @@
       "extensions": [
         "*"
       ],
-      "example_path": "https://github.com/mattrothenberg/styleguide-block/blob/main/index.css"
+      "example_path": "https://github.com/mattrothenberg/styleguide-block-test/blob/main/index.css"
     }
   ],
   "dependencies": {
