@@ -21,24 +21,13 @@
     {
       "type": "file",
       "id": "file-block",
-      "title": "Example File Block",
-      "description": "A basic file block",
-      "entry": "/src/blocks/example-file-block/index.tsx",
+      "title": "Styleguide Block",
+      "description": "A proof-of-concept for living styleguides",
+      "entry": "/src/blocks/styleguide-block/index.tsx",
       "extensions": [
         "*"
       ],
-      "example_path": "https://github.com/facebook/react/blob/main/packages/react-dom/index.js"
-    },
-    {
-      "type": "folder",
-      "id": "folder-block",
-      "title": "Example Folder Block",
-      "description": "A basic folder block",
-      "entry": "/src/blocks/example-folder-block/index.tsx",
-      "extensions": [
-        "*"
-      ],
-      "example_path": "https://github.com/githubocto/flat"
+      "example_path": "https://github.com/mattrothenberg/styleguide-block/blob/main/index.css"
     }
   ],
   "dependencies": {
@@ -47,13 +36,16 @@
     "@loadable/component": "^5.15.0",
     "@octokit/rest": "^18.12.0",
     "@types/lodash.uniqueid": "^4.0.6",
+    "@types/styled-components": "^5.1.24",
     "git-url-parse": "^11.6.0",
     "lodash.uniqueid": "^4.0.1",
     "parse-static-imports": "^1.1.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-error-boundary": "^3.1.4",
-    "react-query": "^3.32.3"
+    "react-query": "^3.32.3",
+    "react-runner": "^1.0.0-rc.2",
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "@types/git-url-parse": "^9.0.1",
