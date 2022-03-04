@@ -6,7 +6,6 @@ import {
 import CodeEditor from "@uiw/react-textarea-code-editor";
 import { FileBlockProps } from "@githubnext/utils";
 import { useState } from "react";
-import "./index.css";
 
 const Editor = ({
   onChange,
@@ -33,8 +32,6 @@ const Editor = ({
     />
   );
 };
-
-import "./index.css";
 
 interface ComponentDefinition {
   title: string;
