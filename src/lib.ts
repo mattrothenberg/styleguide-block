@@ -78,12 +78,8 @@ ${cssFilesString}
   );
 
   const injectedSource = `
-  import React from "react";
-  import ReactDOM from "react-dom";
-  import ReactDOMServer from "react-dom/server";
-
-  ${processBundle(mainContent)}
-  const Block = BlockBundle.default;
+  import React from 'react'
+  import Block from "/block.tsx";
 
   const onUpdateMetadata = (newMetadata) => {
     window.parent.postMessage({
@@ -174,10 +170,10 @@ ${cssFilesString}
 };
 const processBundle = (bundle: string) => {
   // remove imports from React. This might need tweaking
-  bundle = bundle.replace(
-    /(import)([\w\s\}\{,]{3,30}?)(from\s["']react["'])/g,
-    ""
-  );
+  // bundle = bundle.replace(
+  //   /(import)([\w\s\}\{,]{3,30}?)(from\s["']react["'])/g,
+  //   ""
+  // );
 
   return bundle;
 };

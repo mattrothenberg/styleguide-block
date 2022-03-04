@@ -82,26 +82,6 @@ export const ProductionBlock = (props: ProductionBlockProps) => {
 
   if (!bundleCode) return null;
 
-  const stubBlockParent = `
-    import Block from "/block.tsx";
-    console.log(Block);
-
-    export default function App () {
-      const props = {
-        content: "* {background: red;}",
-        context: {
-          owner: "mattrothenberg",
-          org: "paisjdpoasijdpiosadj"
-        }
-      };
-
-      return (
-        <Block {...props} />
-      )
-    }
-  
-  `;
-
   return (
     <div
       ref={sandpackWrapper}
@@ -120,7 +100,7 @@ export const ProductionBlock = (props: ProductionBlockProps) => {
           },
           files: {
             "/block.tsx": bundleCode[0].content,
-            "/App.tsx": stubBlockParent,
+            ...files,
           },
         }}
         autorun
