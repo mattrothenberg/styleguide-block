@@ -37,6 +37,7 @@
     "@octokit/rest": "^18.12.0",
     "@types/lodash.uniqueid": "^4.0.6",
     "@types/styled-components": "^5.1.24",
+    "@uiw/react-textarea-code-editor": "^1.5.1",
     "git-url-parse": "^11.6.0",
     "lodash.uniqueid": "^4.0.1",
     "parse-static-imports": "^1.1.0",

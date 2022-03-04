@@ -3,8 +3,10 @@ import {
   SandpackPreview,
   SandpackProvider,
 } from "@codesandbox/sandpack-react";
+import CodeEditor from "@uiw/react-textarea-code-editor";
 import { FileBlockProps } from "@githubnext/utils";
 import { useState } from "react";
+import "./index.css";
 
 const Editor = ({
   onChange,
@@ -14,8 +16,16 @@ const Editor = ({
   onChange: (code: string) => void;
 }) => {
   return (
-    <textarea
-      className="w-full h-64"
+    <CodeEditor
+      className="w-full h-full whitespace-nowrap editor"
+      language="jsx"
+      placeholder="Please enter JS code."
+      style={{
+        fontSize: 12,
+        backgroundColor: "#f5f5f5",
+        fontFamily:
+          "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace",
+      }}
       value={value}
       onChange={(e) => {
         onChange(e.target.value);
@@ -35,14 +45,14 @@ interface ComponentBlockProps {
   definition: ComponentDefinition;
   stylesheet: string;
   onChange: (definition: ComponentDefinition) => void;
+  onDelete: () => void;
 }
 
 function ComponentBlock(props: ComponentBlockProps) {
-  const { definition, stylesheet, onChange } = props;
+  const { definition, stylesheet, onChange, onDelete } = props;
 
   const adjustedCode = `
-    import "/style.css";
-    export default function App () {
+    import "/style.css";export default function App () {
       return (
         <>
           ${definition.code}
@@ -68,11 +78,16 @@ function ComponentBlock(props: ComponentBlockProps) {
   return (
     <div>
       <div className="mb-2">
-        <input
-          onChange={handleTitleChange}
-          className="w-full text-lg"
-          value={definition.title}
-        />
+        <div className="flex justify-between items-center">
+          <input
+            onChange={handleTitleChange}
+            className="w-full text-lg"
+            value={definition.title}
+          />
+          <button onClick={onDelete} className="btn btn-danger btn-sm">
+            Delete
+          </button>
+        </div>
       </div>
       <SandpackProvider
         customSetup={{
@@ -90,7 +105,10 @@ function ComponentBlock(props: ComponentBlockProps) {
             <Editor value={definition.code} onChange={handleEditorChange} />
           </div>
           <div className="flex-1">
-            <SandpackPreview />
+            <SandpackPreview
+              showRefreshButton={false}
+              showOpenInCodeSandbox={false}
+            />
           </div>
         </SandpackLayout>
       </SandpackProvider>
@@ -118,12 +136,16 @@ export default function (props: FileBlockProps) {
     setComponents((curr) => curr.map((c, i) => (i === index ? component : c)));
   };
 
+  const handleDelete = (index: number) => {
+    setComponents((curr) => curr.filter((_, i) => i !== index));
+  };
+
   const handleSave = () => {
     onUpdateMetadata({ components });
   };
 
   return (
-    <div>
+    <div className="mb-8">
       <div className="max-w-2xl mx-auto">
         <header className="border-b py-3">
           <div className="flex items-center justify-between">
@@ -144,6 +166,7 @@ export default function (props: FileBlockProps) {
               <ComponentBlock
                 stylesheet={content}
                 onChange={(component) => handleChange(component, index)}
+                onDelete={() => handleDelete(index)}
                 definition={component}
               />
             </li>
